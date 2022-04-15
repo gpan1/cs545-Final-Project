@@ -78,10 +78,22 @@ export default class App extends Component {
 	}
 	checkAnswer = answer => {
 		if (answer == this.state.characters[this.state.currentCharacter]) {
-			this.setState({
-				currentCharacter: this.randomCharacter(this.state.characters),
-				health: this.state.health - 25, // don't know if this will work
-			});
+			let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
+			if (newBossHealth < 0) {
+				this.setState({
+					alertType: "error",
+					alertTitle: "Boss Defeated!",
+					alertText: "Nice job, you defeated a boss! You're next boss will have more heatlh",
+					alertActive: true,
+					currentCharacter: this.randomCharacter(this.state.characters),
+					bossHealth: newBossHealth,
+				});
+			} else {
+				this.setState({
+					currentCharacter: this.randomCharacter(this.state.characters),
+					bossHealth: newBossHealth,
+				});
+			}
 		} else if (this.state.playerHealth === 20) {
 			this.setState({
 				alertType: "error",
@@ -105,10 +117,23 @@ export default class App extends Component {
 				playerHealth: this.updateHealth(this.state.playerHealth, "player"),
 			});
 		}
-		// this.setState({
-		// 	currentCharacter: this.randomCharacter(this.state.characters),
-		// 	bossHealth: this.updateHealth(this.state.bossHealth, "boss"), // don't know if this will work
-		// });
+
+		// let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
+		// if (newBossHealth <= 0) {
+		// 	this.setState({
+		// 		alertType: "error",
+		// 		alertTitle: "Boss Defeated!",
+		// 		alertText: "Nice job, you defeated a boss! You're next boss will have more heatlh",
+		// 		alertActive: true,
+		// 		currentCharacter: this.randomCharacter(this.state.characters),
+		// 		bossHealth: newBossHealth,
+		// 	});
+		// } else {
+		// 	this.setState({
+		// 		currentCharacter: this.randomCharacter(this.state.characters),
+		// 		bossHealth: newBossHealth,
+		// 	});
+		// }
 	};
 
 	render() {
