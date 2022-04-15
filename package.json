@@ -1,21 +1,26 @@
 {
-  "name": "learn-hiragana",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "dependencies": "^0.0.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "styled-components": "^2.3.0",
-    "sweetalert-react": "^0.4.11"
-  },
-  "devDependencies": {
-    "react-scripts": "1.0.17"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+	"name": "learn-hiragana",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@emotion/react": "^11.9.0",
+		"@emotion/styled": "^11.8.1",
+		"bootstrap": "^3.4.1",
+		"dependencies": "^0.0.1",
+		"framer-motion": "^6.3.0",
+		"rc-progress": "^3.2.4",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"styled-components": "^2.3.0",
+		"sweetalert-react": "^0.4.11"
+	},
+	"devDependencies": {
+		"react-scripts": "1.0.17"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject"
+	}
 }
