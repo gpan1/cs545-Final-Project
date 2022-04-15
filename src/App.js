@@ -123,13 +123,13 @@ export default class App extends Component {
 						onConfirm={() => this.setState({ alertActive: false })}
 					/>
 					<p>Boss</p>
-					<Line percent={this.state.health} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square"/>
+					<Line percent={this.state.bossHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square" />
 					<img src={sprites[this.state.spriteIndex]}></img>
 					<Title>What Is This Character?</Title>
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
 					<p>Player</p>
-					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square"/>
+					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square" />
 				</Fragment>
 			</div>
 		);
