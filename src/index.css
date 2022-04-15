@@ -11,15 +11,49 @@ body {
 }
 
 body {
-	background-color: #80cfa9ff !important;
-	font-size: 18px;
+	background: rgb(128,207,169);
+	background: linear-gradient(0deg, rgba(128,207,169,1) 0%, rgba(71,154,106,1) 100%);
+	/* font-size: 18px; */
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
 	font-family: "Source Sans Pro", sans-serif;
-	 width: 30%; 
+	width: 30%; 
 	/* vertical-align: middle; */
 	transform: translateX(115%);
+}
+.bossHealth {
+	margin-bottom: 7%;
+	/* margin-top: 5px; */
+	width: 90%;
+	margin-left: 5%;
+}
+
+
+#playerText {
+	margin-bottom: 0px;
+}
+#bossText {
+	font-family: sans-serif;
+	color: white;
+	-webkit-text-stroke: 1.5px black;
+	margin-bottom: 1%;
+	margin-top: 1%;
+	font-size: 250%;
+	text-align: center;
+	font-weight: light;
+	
+} 
+
+.sweet-alert {
+	width: 500px;
+	margin-left: -250px;
+}
+
+img {
+	display: block;
+ 	margin-left: auto;
+ 	margin-right: auto;
 }
 
 #app {

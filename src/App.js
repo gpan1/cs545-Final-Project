@@ -31,6 +31,7 @@ export default class App extends Component {
 		let count = 0;
 		Object.keys(characters).map(character => {
 			if (Math.random() < 1 / ++count) result = character;
+			return result;
 		});
 		return result;
 	}
@@ -77,7 +78,7 @@ export default class App extends Component {
 		}
 	}
 	checkAnswer = answer => {
-		if (answer == this.state.characters[this.state.currentCharacter]) {
+		if (answer === this.state.characters[this.state.currentCharacter]) {
 			let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
 			if (newBossHealth < 0) {
 				this.setState({
@@ -117,9 +118,9 @@ export default class App extends Component {
 				playerHealth: this.updateHealth(this.state.playerHealth, "player"),
 			});
 		}
-
-		//	Uncomment the code below this line and comment all the code above for all answers to go through as correct.
-
+		/*
+		 *	Uncomment the code below this line and comment all the code above for all answers to go through as correct.
+		 */
 		// let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
 		// if (newBossHealth <= 0) {
 		// 	this.setState({
@@ -132,10 +133,12 @@ export default class App extends Component {
 		// 	});
 		// } else {
 		// 	this.setState({
+		// 		playerHealth: 100,
 		// 		currentCharacter: this.randomCharacter(this.state.characters),
 		// 		bossHealth: newBossHealth,
 		// 	});
 		// }
+
 	};
 
 	render() {
@@ -149,14 +152,16 @@ export default class App extends Component {
 						show={this.state.alertActive}
 						onConfirm={() => this.setState({ alertActive: false })}
 					/>
-					<p>Boss</p>
-					<Line percent={this.state.bossHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square" />
-					<img src={sprites[this.state.spriteIndex]}></img>
-					<Title>What Is This Character?</Title>
+					<p id="bossText">Boss</p>
+					<Line percent={this.state.bossHealth} strokeWidth="4" strokeColor="#bf6a5c" strokeLinecap="round" className="bossHealth"/>
+					<img src={sprites[this.state.spriteIndex]} alt="Boss" id="bossImage"></img>
+					<Title id="titleText">What Is This Character?</Title>
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
-					<p>Player</p>
-					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square" />
+					<p id="playerText">Player</p>
+					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="round" className="playerHealth" />
+						
+					
 				</Fragment>
 			</div>
 		);

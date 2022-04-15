@@ -6,4 +6,5 @@ export default styled.h1`
 	letter-spacing: 0.3em;
 	text-transform: uppercase;
 	font-family: Lato, sans-serif;
+	text-align: center;
 `;
