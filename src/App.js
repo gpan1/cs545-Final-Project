@@ -6,7 +6,6 @@ import Hiragana from "./syllabary/Hiragana.js";
 import Katakana from "./syllabary/Katakana.js";
 import Character from "./components/Character.js";
 import { Line } from "rc-progress";
-
 import albanana from "./sprites/albanana.png";
 import albanana2 from "./sprites/albanana2.png";
 import albanana3 from "./sprites/albanana3.png";
@@ -23,8 +22,9 @@ export default class App extends Component {
 		characters: Object.assign(Hiragana, Katakana),
 		currentCharacter: "ア",
 		spriteIndex: 0,
-		health: 100, // base health will decrement eac time and double with each correct answer set
-		healthDecrement: 50,
+		bossHealth: 100,
+		playerHealth: 100,
+		damage: 50,
 	};
 
 	randomCharacter(characters) {
@@ -44,38 +44,60 @@ export default class App extends Component {
 		return newSpriteIndex;
 	}
 
-	updateHealth() {
-		let newHealth = this.state.health - this.state.healthDecrement;
+	updateHealth(oldHealth, type) {
+		let damage = 0;
+		if (type === "boss") {
+			damage = this.state.damage;
+		} else {
+			damage = 20;
+		}
+		let newHealth = oldHealth - damage;
 		if (newHealth <= 0) {
-			this.setState({
-				healthDecrement: Math.floor(this.state.healthDecrement * 0.8),
-				spriteIndex: this.udpateSprite(),
-			});
+			if (type === "boss") {
+				this.setState({
+					damage: Math.floor(this.state.damage * 0.8),
+					spriteIndex: this.udpateSprite(),
+				});
+			} else {
+				this.setState({
+					alertText: "",
+					alertTitle: "",
+					alertActive: false,
+					alertType: "success",
+					characters: Object.assign(Hiragana, Katakana),
+					currentCharacter: "ア",
+					spriteIndex: 0,
+					bossHealth: 100,
+					playerHealth: 100,
+					damage: 50,
+				});
+			}
 			return 100;
 		} else {
-			return this.state.health - this.state.healthDecrement;
+			return newHealth;
 		}
 	}
 
 	checkAnswer = answer => {
-		if (answer == this.state.characters[this.state.currentCharacter]) {
-			this.setState({
-				currentCharacter: this.randomCharacter(this.state.characters),
-				health: this.state.health - 25, // don't know if this will work
-			});
-		} else {
-			this.setState({
-				alertType: "error",
-				alertTitle: "Woops",
-				alertText: `${this.state.currentCharacter} is "${this.state.characters[this.state.currentCharacter]}"`,
-				alertActive: true,
-				currentCharacter: this.randomCharacter(this.state.characters),
-			});
-		}
-		// this.setState({
-		// 	currentCharacter: this.randomCharacter(this.state.characters),
-		// 	health: this.updateHealth(), // don't know if this will work
-		// });
+		// if (answer == this.state.characters[this.state.currentCharacter]) {
+		// 	this.setState({
+		// 		currentCharacter: this.randomCharacter(this.state.characters),
+		// 		health: this.state.health - 25, // don't know if this will work
+		// 	});
+		// } else {
+		// 	this.setState({
+		// 		alertType: "error",
+		// 		alertTitle: "Woops",
+		// 		alertText: `${this.state.currentCharacter} is "${this.state.characters[this.state.currentCharacter]}"`,
+		// 		alertActive: true,
+		// 		currentCharacter: this.randomCharacter(this.state.characters),
+		// 		playerHealth: this.updateHealth(this.state.playerHealth, "player"),
+		// 	});
+		// }
+		this.setState({
+			currentCharacter: this.randomCharacter(this.state.characters),
+			bossHealth: this.updateHealth(this.state.bossHealth, "boss"), // don't know if this will work
+		});
 	};
 
 	render() {
@@ -93,7 +115,10 @@ export default class App extends Component {
 					<Title>Guess The Character</Title>
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
-					<Line percent={this.state.health} strokeWidth="4" strokeColor="#D3D3D3" />
+					<p>Boss</p>
+					<Line percent={this.state.bossHealth} strokeWidth="4" strokeColor="#D3D3D3" />
+					<p>Player</p>
+					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#D3D3D3" />
 				</Fragment>
 			</div>
 		);
