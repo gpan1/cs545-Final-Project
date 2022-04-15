@@ -5,7 +5,14 @@ import Answer from "./components/Answer.js";
 import Hiragana from "./syllabary/Hiragana.js";
 import Katakana from "./syllabary/Katakana.js";
 import Character from "./components/Character.js";
-import { Line, Circle } from "rc-progress";
+import { Line } from "rc-progress";
+
+import albanana from "./sprites/albanana.png";
+import albanana2 from "./sprites/albanana2.png";
+import albanana3 from "./sprites/albanana3.png";
+import sanbean from "./sprites/sanbean.png";
+
+let sprites = [albanana, albanana2, albanana3, sanbean];
 
 export default class App extends Component {
 	state = {
@@ -15,6 +22,7 @@ export default class App extends Component {
 		alertType: "success",
 		characters: Object.assign(Hiragana, Katakana),
 		currentCharacter: "ア",
+		spriteIndex: 0,
 		health: 100, // base health will decrement eac time and double with each correct answer set
 		healthDecrement: 50,
 	};
@@ -28,11 +36,20 @@ export default class App extends Component {
 		return result;
 	}
 
+	udpateSprite() {
+		let newSpriteIndex = this.state.spriteIndex + 1;
+		if (newSpriteIndex >= sprites.length) {
+			newSpriteIndex = 0;
+		}
+		return newSpriteIndex;
+	}
+
 	updateHealth() {
 		let newHealth = this.state.health - this.state.healthDecrement;
 		if (newHealth <= 0) {
 			this.setState({
 				healthDecrement: Math.floor(this.state.healthDecrement * 0.8),
+				spriteIndex: this.udpateSprite(),
 			});
 			return 100;
 		} else {
@@ -72,6 +89,7 @@ export default class App extends Component {
 						show={this.state.alertActive}
 						onConfirm={() => this.setState({ alertActive: false })}
 					/>
+					<img src={sprites[this.state.spriteIndex]}></img>
 					<Title>Guess The Character</Title>
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
