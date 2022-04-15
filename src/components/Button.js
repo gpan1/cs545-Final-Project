@@ -11,7 +11,7 @@ export default styled.button`
 	border: 3px solid #fff;
 	background: transparent;
 	&:hover {
-		color: #3023ae;
-		background: #fff;
+		color: #fff;
+		background: #d5aca9ff;
 	}
 `;

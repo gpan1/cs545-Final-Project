@@ -43,7 +43,7 @@ export default class Answer extends Component {
 						border: "3px solid #fff",
 					}}
 				/>
-				<Button type="submit">Submit</Button>
+				<Button type="submit">Attack!</Button>
 			</form>
 		);
 	}

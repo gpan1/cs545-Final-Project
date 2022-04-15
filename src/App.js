@@ -11,7 +11,6 @@ import albanana from "./sprites/albanana.png";
 import albanana2 from "./sprites/albanana2.png";
 import albanana3 from "./sprites/albanana3.png";
 import sanbean from "./sprites/sanbean.png";
-
 let sprites = [albanana, albanana2, albanana3, sanbean];
 
 export default class App extends Component {
@@ -58,7 +57,7 @@ export default class App extends Component {
 	}
 
 	checkAnswer = answer => {
-		if (answer == this.state.characters[this.state.currentCharacter]) {
+		if (answer === this.state.characters[this.state.currentCharacter]) {
 			this.setState({
 				currentCharacter: this.randomCharacter(this.state.characters),
 				health: this.state.health - 25, // don't know if this will work
@@ -89,11 +88,11 @@ export default class App extends Component {
 						show={this.state.alertActive}
 						onConfirm={() => this.setState({ alertActive: false })}
 					/>
+					<Line percent={this.state.health} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="square"/>
 					<img src={sprites[this.state.spriteIndex]}></img>
-					<Title>Guess The Character</Title>
+					<Title>What Is This Character?</Title>
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
-					<Line percent={this.state.health} strokeWidth="4" strokeColor="#D3D3D3" />
 				</Fragment>
 			</div>
 		);

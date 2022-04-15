@@ -11,13 +11,15 @@ body {
 }
 
 body {
-	background: linear-gradient(135deg, #3023ae 0%, #c86dd7 100%);
-	color: #fff;
+	background-color: #80cfa9ff !important;
 	font-size: 18px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	font-family: "Source Sans Pro", sans-serif;
+	 width: 30%; 
+	/* vertical-align: middle; */
+	transform: translateX(115%);
 }
 
 #app {
