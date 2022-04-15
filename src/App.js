@@ -118,6 +118,8 @@ export default class App extends Component {
 			});
 		}
 
+		//	Uncomment the code below this line and comment all the code above for all answers to go through as correct.
+
 		// let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
 		// if (newBossHealth <= 0) {
 		// 	this.setState({
