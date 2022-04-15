@@ -159,7 +159,7 @@ export default class App extends Component {
 					<Character>{this.state.currentCharacter}</Character>
 					<Answer handler={this.checkAnswer} />
 					<p id="playerText">Player</p>
-					<Line percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="round" className="playerHealth" />
+					<Line id="bottomLine" percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="round" className="playerHealth" />
 						
 					
 				</Fragment>
