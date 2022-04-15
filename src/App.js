@@ -59,10 +59,10 @@ export default class App extends Component {
 				});
 			} else {
 				this.setState({
-					alertText: "",
-					alertTitle: "",
-					alertActive: false,
-					alertType: "success",
+					alertType: "error",
+					alertTitle: "Game Over",
+					alertText: "Your answer was wrong and you're out of lives! Press OK to try again",
+					alertActive: true,
 					characters: Object.assign(Hiragana, Katakana),
 					currentCharacter: "ア",
 					spriteIndex: 0,
@@ -76,27 +76,39 @@ export default class App extends Component {
 			return newHealth;
 		}
 	}
-
 	checkAnswer = answer => {
-		// if (answer == this.state.characters[this.state.currentCharacter]) {
-		// 	this.setState({
-		// 		currentCharacter: this.randomCharacter(this.state.characters),
-		// 		health: this.state.health - 25, // don't know if this will work
-		// 	});
-		// } else {
-		// 	this.setState({
-		// 		alertType: "error",
-		// 		alertTitle: "Woops",
-		// 		alertText: `${this.state.currentCharacter} is "${this.state.characters[this.state.currentCharacter]}"`,
-		// 		alertActive: true,
-		// 		currentCharacter: this.randomCharacter(this.state.characters),
-		// 		playerHealth: this.updateHealth(this.state.playerHealth, "player"),
-		// 	});
-		// }
-		this.setState({
-			currentCharacter: this.randomCharacter(this.state.characters),
-			bossHealth: this.updateHealth(this.state.bossHealth, "boss"), // don't know if this will work
-		});
+		if (answer == this.state.characters[this.state.currentCharacter]) {
+			this.setState({
+				currentCharacter: this.randomCharacter(this.state.characters),
+				health: this.state.health - 25, // don't know if this will work
+			});
+		} else if (this.state.playerHealth === 20) {
+			this.setState({
+				alertType: "error",
+				alertTitle: "Game Over",
+				alertText: "Your answer was wrong and you're out of lives! Press OK to try again",
+				alertActive: true,
+				characters: Object.assign(Hiragana, Katakana),
+				currentCharacter: "ア",
+				spriteIndex: 0,
+				bossHealth: 100,
+				playerHealth: 100,
+				damage: 50,
+			});
+		} else {
+			this.setState({
+				alertType: "error",
+				alertTitle: "Woops",
+				alertText: `${this.state.currentCharacter} is "${this.state.characters[this.state.currentCharacter]}"`,
+				alertActive: true,
+				currentCharacter: this.randomCharacter(this.state.characters),
+				playerHealth: this.updateHealth(this.state.playerHealth, "player"),
+			});
+		}
+		// this.setState({
+		// 	currentCharacter: this.randomCharacter(this.state.characters),
+		// 	bossHealth: this.updateHealth(this.state.bossHealth, "boss"), // don't know if this will work
+		// });
 	};
 
 	render() {
