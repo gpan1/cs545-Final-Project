@@ -5,6 +5,6 @@ export default styled.h1`
 	margin-bottom: 1em;
 	letter-spacing: 0.3em;
 	text-transform: uppercase;
-	font-family: Lato, sans-serif;
+	font-family: New Century Schoolbook, TeX Gyre Schola, serif;
 	text-align: center;
 `;

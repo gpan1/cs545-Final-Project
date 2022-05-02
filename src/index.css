@@ -17,7 +17,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: Impact;
 	width: 30%; 
 	/* vertical-align: middle; */
 	transform: translateX(115%);
@@ -36,9 +36,9 @@ body {
 }
 
 #bossText {
-	font-family: sans-serif;
+	font-family: Impact;
 	color: white;
-	-webkit-text-stroke: 1.5px black;
+	/* -webkit-text-stroke: 1.5px black; */
 	margin-bottom: 1%;
 	margin-top: 1%;
 	font-size: 250%;

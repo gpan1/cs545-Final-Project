@@ -6,11 +6,7 @@ import Hiragana from "./syllabary/Hiragana.js";
 import Katakana from "./syllabary/Katakana.js";
 import Character from "./components/Character.js";
 import { Line } from "rc-progress";
-import albanana from "./sprites/albanana.png";
-import albanana2 from "./sprites/albanana2.png";
-import albanana3 from "./sprites/albanana3.png";
-import sanbean from "./sprites/sanbean.png";
-let sprites = [albanana, albanana2, albanana3, sanbean];
+import sprites from "./sprites/index.js";
 
 export default class App extends Component {
 	state = {
@@ -19,7 +15,7 @@ export default class App extends Component {
 		alertActive: false,
 		alertType: "success",
 		characters: Object.assign(Hiragana, Katakana),
-		currentCharacter: "ア",
+		currentCharacter: this.randomCharacter(Object.assign(Hiragana, Katakana)),
 		spriteIndex: 0,
 		bossHealth: 100,
 		playerHealth: 100,
@@ -65,7 +61,7 @@ export default class App extends Component {
 					alertText: "Your answer was wrong and you're out of lives! Press OK to try again",
 					alertActive: true,
 					characters: Object.assign(Hiragana, Katakana),
-					currentCharacter: "ア",
+					currentCharacter: this.randomCharacter(Object.assign(Hiragana, Katakana)),
 					spriteIndex: 0,
 					bossHealth: 100,
 					playerHealth: 100,
@@ -84,7 +80,7 @@ export default class App extends Component {
 				this.setState({
 					alertType: "error",
 					alertTitle: "Boss Defeated!",
-					alertText: "Nice job, you defeated a boss! You're next boss will have more heatlh",
+					alertText: "Nice job, you defeated a boss! You're next boss will have more health",
 					alertActive: true,
 					currentCharacter: this.randomCharacter(this.state.characters),
 					bossHealth: newBossHealth,
@@ -102,7 +98,7 @@ export default class App extends Component {
 				alertText: "Your answer was wrong and you're out of lives! Press OK to try again",
 				alertActive: true,
 				characters: Object.assign(Hiragana, Katakana),
-				currentCharacter: "ア",
+				currentCharacter: this.randomCharacter(Object.assign(Hiragana, Katakana)),
 				spriteIndex: 0,
 				bossHealth: 100,
 				playerHealth: 100,

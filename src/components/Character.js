@@ -13,7 +13,7 @@ export default class Character extends Component {
 					letterSpacing: "0.3em",
 					textTransform: "uppercase",
 					background: "rgba(0,0,0,0.3)",
-					fontFamily: "Lato, sans-serif",
+					fontFamily: "American Typewriter, serif",
 				}}>
 				{this.props.children}
 			</div>

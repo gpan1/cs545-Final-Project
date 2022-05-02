@@ -33,14 +33,15 @@ export default class Answer extends Component {
 					onChange={this.handleChange.bind(this)}
 					style={{
 						flexGrow: "1",
-						fontSize: ".7em",
+						fontSize: "1em",
 						cursor: "pointer",
 						marginRight: "1em",
-						padding: "1em",
+						padding: ".5em",
 						marginBottom: "1em",
 						borderRadius: "3px",
 						transition: ".3s ease",
 						border: "3px solid #fff",
+						fontFamily: "American Typewriter, serif"
 					}}
 				/>
 				<Button type="submit">Attack!</Button>
