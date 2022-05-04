@@ -7,7 +7,7 @@ import Katakana from "./syllabary/Katakana.js";
 import Character from "./components/Character.js";
 import { Line } from "rc-progress";
 import sprites from "./sprites/index.js";
-
+const spriteNames = ["albanana", "albanana2", "albanana3", "sanbean", "lyndon bee johnson", "bell Lad"];
 export default class App extends Component {
 	state = {
 		alertText: "",
@@ -31,8 +31,14 @@ export default class App extends Component {
 		});
 		return result;
 	}
-
-	udpateSprite() {
+	getCurrentBossName()
+	{
+		let str = spriteNames[this.state.spriteIndex];
+		str = str.split(".")[0].toUpperCase();
+		return str;
+	}
+	
+	updateSprite() {
 		let newSpriteIndex = this.state.spriteIndex + 1;
 		if (newSpriteIndex >= sprites.length) {
 			newSpriteIndex = 0;
@@ -52,7 +58,7 @@ export default class App extends Component {
 			if (type === "boss") {
 				this.setState({
 					damage: Math.floor(this.state.damage * 0.8),
-					spriteIndex: this.udpateSprite(),
+					spriteIndex: this.updateSprite(),
 				});
 			} else {
 				this.setState({
@@ -75,12 +81,17 @@ export default class App extends Component {
 	}
 	checkAnswer = answer => {
 		if (answer === this.state.characters[this.state.currentCharacter]) {
+			let x = false;
+		 	if (this.state.bossHealth - this.state.damage <= 0)
+		 	{
+				x = true;
+		 	}
 			let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
-			if (newBossHealth < 0) {
+			if (x) {
 				this.setState({
-					alertType: "error",
+					alertType: "success",
 					alertTitle: "Boss Defeated!",
-					alertText: "Nice job, you defeated a boss! You're next boss will have more health",
+					alertText: "Nice job, you defeated a boss! Your next boss will have more health",
 					alertActive: true,
 					currentCharacter: this.randomCharacter(this.state.characters),
 					bossHealth: newBossHealth,
@@ -107,7 +118,7 @@ export default class App extends Component {
 		} else {
 			this.setState({
 				alertType: "error",
-				alertTitle: "Woops",
+				alertTitle: "Whoops",
 				alertText: `${this.state.currentCharacter} is "${this.state.characters[this.state.currentCharacter]}"`,
 				alertActive: true,
 				currentCharacter: this.randomCharacter(this.state.characters),
@@ -117,12 +128,17 @@ export default class App extends Component {
 		/*
 		 *	Uncomment the code below this line and comment all the code above for all answers to go through as correct.
 		 */
+		// let x = false;
+		//  if (this.state.bossHealth - this.state.damage <= 0)
+		//  {
+		// 	x = true;
+		//  }
 		// let newBossHealth = this.updateHealth(this.state.bossHealth, "boss");
-		// if (newBossHealth <= 0) {
+		// if (x) {
 		// 	this.setState({
-		// 		alertType: "error",
-		// 		alertTitle: "Boss Defeated!",
-		// 		alertText: "Nice job, you defeated a boss! You're next boss will have more heatlh",
+		// 		alertType: "success",
+		// 		alertTitle: spriteNames[this.state.spriteIndex].toUpperCase() +" Defeated!",
+		// 		alertText: "Nice job, you defeated a boss! Your next boss will have more health",
 		// 		alertActive: true,
 		// 		currentCharacter: this.randomCharacter(this.state.characters),
 		// 		bossHealth: newBossHealth,
@@ -148,7 +164,7 @@ export default class App extends Component {
 						show={this.state.alertActive}
 						onConfirm={() => this.setState({ alertActive: false })}
 					/>
-					<p id="bossText">Boss</p>
+					<p id="bossText">{this.getCurrentBossName()}</p>
 					<Line percent={this.state.bossHealth} strokeWidth="4" strokeColor="#bf6a5c" strokeLinecap="round" className="bossHealth"/>
 					<img src={sprites[this.state.spriteIndex]} alt="Boss" id="bossImage"></img>
 					<Title id="titleText">What Is This Character?</Title>
@@ -156,8 +172,6 @@ export default class App extends Component {
 					<Answer handler={this.checkAnswer} />
 					<p id="playerText">Player</p>
 					<Line id="bottomLine" percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="round" className="playerHealth" />
-						
-					
 				</Fragment>
 			</div>
 		);

@@ -28,7 +28,10 @@ body {
 	width: 90%;
 	margin-left: 5%;
 }
-
+.sweet{
+	width: unset;
+	width: 100;
+}
 
 #playerText {
 	margin-bottom: 0px;
