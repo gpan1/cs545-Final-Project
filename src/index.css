@@ -9,7 +9,11 @@ body {
 	margin: 0;
 	height: 100%;
 }
-
+#adamstinky{
+	all:unset;
+	width: 100% !important;
+	display: inline !important;
+}
 body {
 	background: rgb(128,207,169);
 	background: linear-gradient(0deg, rgba(128,207,169,1) 0%, rgba(71,154,106,1) 100%);
