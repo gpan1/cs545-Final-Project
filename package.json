@@ -11,6 +11,7 @@
 		"rc-progress": "^3.2.4",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
+		"react-router-dom": "^6.3.0",
 		"styled-components": "^2.3.0",
 		"sweetalert-react": "^0.4.11"
 	},
