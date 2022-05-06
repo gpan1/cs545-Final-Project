@@ -1,28 +1,40 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Hiragana from "../syllabary/Hiragana.js";
 import Katakana from "../syllabary/Katakana.js";
 import Button from "./Button.js";
 
-
 function Study() {
   const [isShown, setIsShown] = useState(false);
+  const [selected, setSelected] = useState(undefined);
   let characters = Object.assign(Hiragana, Katakana);
 
   return (
     <div id="adamstinky">
       {Object.keys(characters).map((char) => {
         return (
-          <div id="adamstinky">
-            <Button
-              onMouseEnter={() => setIsShown(true)}
-              onMouseLeave={() => setIsShown(false)}
-            >
-              {char}
-            </Button>
-            {isShown && <div id="adamstinky">{characters[char]}</div>}
-          </div>
+          <button
+            onClick={() => {
+              if (isShown && selected == char) {
+                setIsShown(false);
+              } else if (isShown && selected != char) {
+                setSelected(char);
+              } else {
+                setIsShown(true);
+                setSelected(char);
+              }
+            }}
+          >
+            {char}
+          </button>
         );
       })}
+      {isShown && <div>{characters[selected]}</div>}
+      <Link to="/">
+        <Button type="submit" id="test">
+          Test!
+        </Button>
+      </Link>
     </div>
   );
 }

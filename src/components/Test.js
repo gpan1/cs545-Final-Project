@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import { Link } from "react-router-dom";
 import Title from "./Title.js";
 import SweetAlert from "sweetalert-react";
 import Answer from "./Answer.js";
@@ -210,9 +211,11 @@ export default class Test extends Component {
             className="playerHealth"
           />
           <p id="streak">STREAK: {counter}</p>
-          <Button type="submit" id="study">
-            Study!
-          </Button>
+          <Link to="/study">
+            <Button type="submit" id="study">
+              Study!
+            </Button>
+          </Link>
         </Fragment>
       </div>
     );
