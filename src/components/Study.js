@@ -11,13 +11,14 @@ function Study() {
 
   return (
     <div id="adamstinky">
+        <br id="stink3"></br>
       {Object.keys(characters).map((char) => {
         return (
-          <button
+          <button id="stink"
             onClick={() => {
-              if (isShown && selected == char) {
+              if (isShown && selected === char) {
                 setIsShown(false);
-              } else if (isShown && selected != char) {
+              } else if (isShown && selected !== char) {
                 setSelected(char);
               } else {
                 setIsShown(true);
@@ -29,12 +30,13 @@ function Study() {
           </button>
         );
       })}
-      {isShown && <div>{characters[selected]}</div>}
+      <br></br>
       <Link to="/">
         <Button type="submit" id="test">
           Test!
         </Button>
       </Link>
+      {isShown && <div id="stink2">{characters[selected]}</div>}
     </div>
   );
 }
