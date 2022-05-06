@@ -52,7 +52,7 @@ body {
 	font-weight: light;
 	color: white;
 	font-Family: "Papyrus";
-	font-size: 200%;
+	font-size: 180%;
 	margin-bottom: 1%;
 	margin-top: 1%;
 }
@@ -62,7 +62,7 @@ body {
 }
 
 #bottomLine {
-	margin-bottom: 10%;
+	margin-bottom: 1%;
 }
 .sweet-alert {
 	width: 500px;
