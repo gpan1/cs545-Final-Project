@@ -28,10 +28,6 @@ body {
 	width: 90%;
 	margin-left: 5%;
 }
-.sweet{
-	width: unset;
-	width: 100;
-}
 
 #playerText {
 	margin-bottom: 0px;
@@ -49,6 +45,21 @@ body {
 	font-weight: light;
 	
 } 
+
+#streak{
+	text-align: center;
+	display: inline;
+	font-weight: light;
+	color: white;
+	font-Family: "Papyrus";
+	font-size: 200%;
+	margin-bottom: 1%;
+	margin-top: 1%;
+}
+
+#study{
+	float: right;
+}
 
 #bottomLine {
 	margin-bottom: 10%;

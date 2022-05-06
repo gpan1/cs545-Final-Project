@@ -7,7 +7,10 @@ import Katakana from "./syllabary/Katakana.js";
 import Character from "./components/Character.js";
 import { Line } from "rc-progress";
 import sprites from "./sprites/index.js";
+import Button from "./components/Button.js";
+import Study from "./components/Study.js"
 const spriteNames = ["albanana", "albanana2", "albanana3", "sanbean", "lyndon bee johnson", "bell Lad"];
+let counter = 0;
 export default class App extends Component {
 	state = {
 		alertText: "",
@@ -73,6 +76,7 @@ export default class App extends Component {
 					playerHealth: 100,
 					damage: 50,
 				});
+				counter = 0;
 			}
 			return 100;
 		} else {
@@ -96,6 +100,7 @@ export default class App extends Component {
 					currentCharacter: this.randomCharacter(this.state.characters),
 					bossHealth: newBossHealth,
 				});
+				counter++;
 			} else {
 				this.setState({
 					currentCharacter: this.randomCharacter(this.state.characters),
@@ -115,6 +120,7 @@ export default class App extends Component {
 				playerHealth: 100,
 				damage: 50,
 			});
+			counter = 0;
 		} else {
 			this.setState({
 				alertType: "error",
@@ -172,6 +178,8 @@ export default class App extends Component {
 					<Answer handler={this.checkAnswer} />
 					<p id="playerText">Player</p>
 					<Line id="bottomLine" percent={this.state.playerHealth} strokeWidth="4" strokeColor="#cf8b80" strokeLinecap="round" className="playerHealth" />
+					<p id="streak">STREAK: {counter}</p>
+					<Button type="submit" id="study">Study!</Button>
 				</Fragment>
 			</div>
 		);
